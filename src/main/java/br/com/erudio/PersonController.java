@@ -15,40 +15,35 @@ public class PersonController {
     private PersonServices service;
 
 
-    @RequestMapping(method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE )
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE )
     public List<Person> findAll(){
         return service.findAll();
     }
 
 
-    @RequestMapping(value = "/{id}",
-            method = RequestMethod.GET,
+    @GetMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Person findById(@PathVariable (value = "id")Long id) throws Exception{
         return  service.findById(id);
     }
 
-    @RequestMapping(
-    method = RequestMethod.POST,
+    @PostMapping(
     consumes = MediaType.APPLICATION_JSON_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE)
     public Person create(@RequestBody Person person){
         return service.create(person);
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT,
+    @PutMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Person update(@RequestBody Person person){
         return service.update(person);
     }
 
-    @RequestMapping(value = "/{id}",
-            method = RequestMethod.DELETE,
+    @DeleteMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void delete(@PathVariable (value = "id")Long id) throws Exception{
-        service.findById(id);
+        service.delete(id);
     }
 }
