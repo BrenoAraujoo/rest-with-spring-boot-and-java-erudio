@@ -2,6 +2,7 @@ package br.com.erudio.controllers;
 
 import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.mapper.DozerMapper;
+import br.com.erudio.model.Person;
 import br.com.erudio.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,30 +20,29 @@ public class PersonController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE )
     public List<PersonVO> findAll(){
-        return DozerMapper.parseListObject(service.findAll(), PersonVO.class);
+        return service.findAll();
     }
 
 
     @GetMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public PersonVO findById(@PathVariable (value = "id")Long id) throws Exception{
-        return  DozerMapper.parseObject(service.findById(id), PersonVO.class);
+        return  service.findById(id);
     }
 
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public PersonVO create(@RequestBody PersonVO person){
-        var  p = DozerMapper.parseObject(person, PersonVO.class);
-        return service.create(p);
+        return service.create(person);
     }
 
-//    @PutMapping(
-//            consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = MediaType.APPLICATION_JSON_VALUE)
-//    public PersonVO update(@RequestBody PersonVO person){
-//        return service.update(person);
-//    }
+    @PutMapping(
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public PersonVO update(@RequestBody PersonVO person){
+        return service.update(person);
+    }
 
 
     @DeleteMapping(value = "/{id}",

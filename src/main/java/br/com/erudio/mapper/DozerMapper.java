@@ -17,8 +17,9 @@ public class DozerMapper {
     //Convert list of Objects
     public static <O, D> List<D> parseListObject(List<O> origin, Class<D> destination) {
         List<D> destinationObjects = new ArrayList<>();
-        for (O o : origin) {
-            destinationObjects.add(mapper.map(origin, destination));
+        for (Object o : origin) {
+            destinationObjects.add(mapper.map(o, destination));
+
         }
         return destinationObjects;
     }
