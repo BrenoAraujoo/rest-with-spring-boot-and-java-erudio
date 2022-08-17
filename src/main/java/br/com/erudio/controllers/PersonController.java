@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
     @Autowired
     private PersonServices service;
@@ -26,7 +26,7 @@ public class PersonController {
 
     @GetMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public PersonVO findById(@PathVariable (value = "id")Long id) throws Exception{
+    public PersonVO findById(@PathVariable (value = "id")Long id) {
         return  service.findById(id);
     }
 
@@ -47,7 +47,7 @@ public class PersonController {
 
     @DeleteMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> delete(@PathVariable (value = "id")Long id) throws Exception{
+    public ResponseEntity<?> delete(@PathVariable (value = "id")Long id){
         service.delete(id);
         return  ResponseEntity.noContent().build();
     }
