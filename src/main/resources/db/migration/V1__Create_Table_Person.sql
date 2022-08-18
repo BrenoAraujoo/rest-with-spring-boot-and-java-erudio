@@ -5,4 +5,3 @@ CREATE TABLE public.person (
     gender character varying(255),
     last_name character varying(255)
 );
-
