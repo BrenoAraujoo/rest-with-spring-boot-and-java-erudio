@@ -1,7 +1,9 @@
 CREATE TABLE public.person (
-    id bigint NOT NULL,
-    address character varying(255),
+    id SERIAL,
     first_name character varying(255) NOT NULL,
-    gender character varying(255),
-    last_name character varying(255)
+    last_name character varying(255) NOT NULL,
+    address character varying(255) NOT NULL,
+    gender character varying(255) NOT NULL,
+    CONSTRAINT person_pkey PRIMARY KEY (id)
+
 );
